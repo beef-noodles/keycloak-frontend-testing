@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>index page</title>
+    <script type="module">
+      //Import from cdn(you can choose the appropriate cdn source according to your needs), or just from the local(download the casdoor-js-sdk first)
+      import SDK from 'https://unpkg.com/casdoor-js-sdk@latest/lib/esm/sdk.js'
+      const sdkConfig = {
+        serverUrl: "http://localhost:8000",
+        clientId: "c83df185f958a83c58ca",
+        appName: "New-Application",
+        organizationName: "Local-Test",
+        redirectPath: "/callback.html",
+      }
+      window.sdk = new SDK(sdkConfig)
+
+      window.sdk.signin(sdkConfig.serverUrl).then((res) => {
+        if (res.status === "ok") {
+          console.log("success", "login:Logged in successfully");
+          document.location.href = "/";
+        } else {
+          console.error(res)
+        }
+      });
+
+    </script>
+  </head>
+  <body></body>
+</html>
